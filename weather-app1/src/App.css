@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  color: white;
 }
 
 .App-logo {
@@ -23,6 +24,21 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+
+.card {
+  background-color: #004e92;
+  color: white;
+}
+.cardw-body {
+background-color: #004e92;
+color: white;
+}
+.card-title {
+background-color: #004e92;
+color: white;
+}
+
 
 .App-link {
   color: #61dafb;
