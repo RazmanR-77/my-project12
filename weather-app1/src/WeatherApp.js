@@ -139,7 +139,7 @@ function WeatherApp() {
       <label>  </label>
       <input type="text" placeholder=" Enter Country or City  " value={city} onChange={(e) => setCity(e.target.value)} />
 
-      <button class="btn btn-primary d-auto" onClick={() => checkWeather()}  >Check Weather+</button>
+      <button class="btn btn-primary d-auto" onClick={() => checkWeather()}  >Check Weather and Add+</button>
 
 
       <div class="result">

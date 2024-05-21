@@ -1,5 +1,20 @@
 # Getting Started with Create React App
 
+**WeatherApp by author: by Razman Raman, Developer**
+@RazmanR-77
+
+Check The Current Weather with this app!
+
+**Functions and Features**
+1. **Location Input and Search Functionality**: The web app allows users to input a location (Example case, 'COUNTRYNAME') to check the weather for that specific area. There is an input field at the top with a 'Check Weather and Add+' button next to it.
+ 
+2. **Current Weather Display**: For each location, the web app displays the current temperature in degrees Celsius (28°C), along with additional details such as sky condition (clear sky), humidity percentage (82% and 81% respectively), and wind speed (1.58 km/h).
+
+3. **User Interface Design**: The design of the interface is clean and user-friendly, presenting essential weather information at a glance without overwhelming details, which makes it interesting for users who want quick updates.
+
+Feel free to ask if you need further clarification or have any other questions! 😊
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -7,6 +22,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 In the project directory, you can run:
 
 ### `npm start`
+
+**NOTE:**
+may run on port 5002
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
