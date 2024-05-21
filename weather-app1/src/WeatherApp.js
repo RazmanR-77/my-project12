@@ -19,13 +19,15 @@ function WeatherApp() {
     weather: [{ description: "" }]
   });
 
- 
+  const [listRows, setListRows] = useState([5]);
+
 
   useEffect(() => {
     checkWeather();
   }, []);
 
 
+  let list1 = [];
 
 
   function checkWeather() {
@@ -44,11 +46,17 @@ function WeatherApp() {
 
           console.log("weather== ", currentWeather);
 
+          if (currentWeather.main && currentWeather) {
+            list1.push(<RowData />);
+            setListRows(list1);
+
+          }
 
         }));
 
 
     } catch (error) {
+      {/* error handling if data null   */ }
       console.log("error== ", error,
         currentWeather);
 
@@ -57,6 +65,41 @@ function WeatherApp() {
   }
 
 
+  function RowData() {
+    return <div class="row d-auto">
+      <div class="card  card-primary col-md-12">
+        <div class="cardw-body">
+          <h5 class="card-title card-primary col-md-8">{currentWeather.name}</h5>
+
+
+          {/* weather icon   */}
+          <div class="col-md-8">
+            {/* error handling if data null   */}
+            {currentWeather.weather != null ?
+              <WeatherIconDetail src={weatherIcon(`${currentWeather.weather[0].icon}.png`)} /> : "No data"}
+
+          </div>
+          <div class="card-text col-md-8">
+
+            <h4>
+              {/* error handling if data null   */}
+              <div>    {currentWeather.main != null ? <TemperatureWeatherDetail
+                temperature={Math.round(currentWeather.main.temp / 10)}
+                description={currentWeather.weather[0].description} /> : "No data"}
+              </div>
+            </h4>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div>
+        {currentWeather.main != null ?
+          HumidWindTempOtherDetails() : "no data"}
+      </div>
+    </div>;
+  }
 
   function HumidWindTempOtherDetails() {
     return <>
@@ -81,6 +124,10 @@ function WeatherApp() {
           reference</i>  </a> </h3> </span>
       </h1>
 
+      <div> <h5> <b> WeatherApp by
+        author: by Razman Raman, Developer  </b>  </h5>
+      </div>
+
 
       <h3>Check The Current Weather in</h3>
       <div>
@@ -90,7 +137,7 @@ function WeatherApp() {
 
 
       <label>  </label>
-      <input type="text" placeholder=" Country/City  " value={city} onChange={(e) => setCity(e.target.value)} />
+      <input type="text" placeholder=" Enter Country or City  " value={city} onChange={(e) => setCity(e.target.value)} />
 
       <button class="btn btn-primary d-auto" onClick={() => checkWeather()}  >Check Weather+</button>
 
@@ -98,43 +145,18 @@ function WeatherApp() {
       <div class="result">
         <div class="containerr">
 
-          <div class="row d-auto">
-            <div class="card  card-primary col-md-12">
-              <div class="cardw-body">
-                <h5 class="card-title card-primary col-md-8">{currentWeather.name}</h5>
+          <RowData />
+          {console.log("length== ", listRows.length)}
+          {/* list to map to row  */}
+          {listRows.map((rowData) => (
+            <> {rowData}  </>
+          ))}
+         
 
-
-                {/* weather icon   */}
-                <div class="col-md-8">
-                  {currentWeather.weather != null ?
-                    <WeatherIconDetail src={weatherIcon(`${currentWeather.weather[0].icon}.png`)} /> : "No data"}
-
-                </div>
-                <div class="card-text col-md-8">
-
-                  <h4>
-                    <div>    {currentWeather.main != null ? <TemperatureWeatherDetail
-                      temperature={Math.round(currentWeather.main.temp / 10)}
-                      description={currentWeather.weather[0].description}
-                    /> : "No data"}
-                    </div>
-                  </h4>
-
-
-                </div>
-              </div>
-            </div>
-
-
-
-          </div>
-
-          <div>
-            {currentWeather.main != null ?
-              HumidWindTempOtherDetails() : "no data"}
-          </div>
         </div>
       </div>
+
+
 
     </div>
   );
