@@ -1,8 +1,6 @@
 #VENDING MACHINE APP.
 # Author/Developer: RAZMAN RAMAN
 
-#Take two describe 
-
 # TODO  
 ''' Valid products '''
 CANDY = "candy"
@@ -66,6 +64,22 @@ class VendingMachine:
     def format_amount(self, amount):
         return "%s" % "{:.2f}".format(amount)
 
+    def setSelectDrink(self):
+        # show notes 
+        self.currency_notes = [50, 20, 10, 5, 1]
+
+        note = int(input("Please insert a Note (RM): "))
+        drinkSelected = input("Please select a drink: ")
+        drinks = self.drinks
+        if drinkSelected in drinks:
+            price = drinks[drinkSelected]
+
+            if note >= price:
+                change_notes = self.calculate_change( note, price) 
+                for n, amount in change_notes.items():
+                  print(f"RM{n}: {amount}")
+  
+
 
 # main run
 print(VendingMachine().display(  ))
@@ -73,8 +87,14 @@ print(VendingMachine().display(  ))
 # insert note money   
 # select drink  
 # accept payment, dispense drink
+
+# new instance of Vending machine class
+vendingMachine = VendingMachine()
+
+vendingMachine.setSelectDrink()
+
 # display and give change with the minimum number of notes.
-print(VendingMachine().calculate_change( 10, 2 ))
+print(vendingMachine.calculate_change( 10, 2 ))
 
 print("TOTAL MONEY")
  
