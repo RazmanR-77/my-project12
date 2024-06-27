@@ -1,13 +1,9 @@
 #VENDING MACHINE APP.
+# Author/Developer: RAZMAN RAMAN
 
 #Take two describe 
 
 # TODO  
-''' Valid coins '''
-NICKEL = "nickel"
-DIME = "dime"
-QUARTER = "quarter"
-
 ''' Valid products '''
 CANDY = "candy"
 CHIPS = "chips"
@@ -17,29 +13,49 @@ COLA = "cola"
 class VendingMachine:
 
     def __init__(self):
-        self.valid_money = {NICKEL : .05, DIME : 0.1, QUARTER : 0.25}
         self.products = {CANDY : 0.65, CHIPS : 0.50, COLA : 1.00}
         self.money = []
-        self.invalid_coins = []
+        self.invalid_money = []
         self.selected_product = None
 
+        # Define the drinks and their prices
+        self.drinks = {'D1': 1, 'D2': 2, 'D3': 3}
+
+        # Define the available notes for change
+        self.currency_notes = [50, 20, 10, 5, 1]
+
+    def calculate_change(self, note, price):
+        change = note - price
+        change_notes = {}
+
+        # for each note denomination, count the number of notes
+        # example {RM5: 1, RM1: 3}
+        # Update the change remaining: 
+        # change -= note_denomination * (change // note_denomination).
+        # Add the note denomination and its count to the dictionary.
+        for note_denom in self.currency_notes :
+            if change >= note_denom:
+                change_notes[note_denom] = change // note_denom
+                change -= note_denom * (change // note_denom)
+        return change_notes
+
     def display(self):
-        total_coins = sum(self.money)
-        message = self.build_message(total_coins)
+        total_money = sum(self.money)
+        message = self.build_message(total_money)
         self.selected_product = None
         return message
 
-    def build_message(self, total_coins):
+    def build_message(self, total_money):
         if self.selected_product:
-            return self.display_with_selected_product(total_coins)
+            return self.display_with_selected_product(total_money)
         else:
-            return self.display_without_selected_product(total_coins)
+            return self.display_without_selected_product(total_money)
 
     def display_without_selected_product(self, total):
         if (total > 0.0):
             return self.format_amount(total)
 
-        return "INSERT MONEY TO BUY"
+        return "INSERT MONEY/NOTES TO BUY"
 
     def display_with_selected_product(self, total):
         if (total == self.products[self.selected_product]):
@@ -50,17 +66,17 @@ class VendingMachine:
     def format_amount(self, amount):
         return "%s" % "{:.2f}".format(amount)
 
-#take 2 input fields, email and name
 
 # main run
 print(VendingMachine().display(  ))
-print("TOTAL MONEY")
-print(VendingMachine().build_message(  23))
-# print(VendingMachine().build_message(  ""))
 
-print("length MONEY")
-print(VendingMachine().money.__len__())
-print(VendingMachine().money)
-print(VendingMachine().valid_money[NICKEL])
+# insert note money   
+# select drink  
+# accept payment, dispense drink
+# display and give change with the minimum number of notes.
+print(VendingMachine().calculate_change( 10, 2 ))
+
+print("TOTAL MONEY")
+ 
  
  
