@@ -1,17 +1,11 @@
 #VENDING MACHINE APP.
 # Author/Developer: RAZMAN RAMAN
-
-# TODO  
-''' Valid products '''
-CANDY = "candy"
-CHIPS = "chips"
-COLA = "cola"
+# date 27/06/2024
 
 # vending machine class 
 class VendingMachine:
 
     def __init__(self):
-        self.products = {CANDY : 0.65, CHIPS : 0.50, COLA : 1.00}
         self.money = []
         self.invalid_money = []
         self.selected_product = None
@@ -23,6 +17,7 @@ class VendingMachine:
         self.currency_notes = [50, 20, 10, 5, 1]
 
     def calculate_change(self, note, price):
+        # display and give change with the minimum number of notes.
         change = note - price
         change_notes = {}
 
@@ -39,11 +34,11 @@ class VendingMachine:
 
     def display(self):
         total_money = sum(self.money)
-        message = self.build_message(total_money)
+        message = self.set_message(total_money)
         self.selected_product = None
         return message
 
-    def build_message(self, total_money):
+    def set_message(self, total_money):
         if self.selected_product:
             return self.display_with_selected_product(total_money)
         else:
@@ -52,14 +47,14 @@ class VendingMachine:
     def display_without_selected_product(self, total):
         if (total > 0.0):
             return self.format_amount(total)
+        
+        #   msg =    
+        print( "Welcome to the Vending Machine App!")  
+        print("  by Author/Developer: RAZMAN RAMAN")   
+        print()   
+        print( "1. INSERT MONEY/NOTES TO BUY")  
+        return "Ready"
 
-        return "INSERT MONEY/NOTES TO BUY"
-
-    def display_with_selected_product(self, total):
-        if (total == self.products[self.selected_product]):
-            return "THANK YOU"
-        else:
-            return "PRICE %s" % self.format_amount(self.products[self.selected_product])
 
     def format_amount(self, amount):
         return "%s" % "{:.2f}".format(amount)
@@ -74,6 +69,7 @@ class VendingMachine:
         if drinkSelected in drinks:
             price = drinks[drinkSelected]
 
+        # display and give change with the minimum number of notes.
             if note >= price:
                 change_notes = self.calculate_change( note, price) 
                 for n, amount in change_notes.items():
@@ -81,21 +77,22 @@ class VendingMachine:
   
 
 
-# main run
-print(VendingMachine().display(  ))
+# MAIN RUN 
+                  
+# new instance of Vending machine class
+vendingMachine = VendingMachine()
+print(vendingMachine.display(  ))
+
+print()   
+"Welcome to the Vending Machine App!"
+# by Author/Developer: RAZMAN RAMAN
 
 # insert note money   
 # select drink  
 # accept payment, dispense drink
-
-# new instance of Vending machine class
-vendingMachine = VendingMachine()
-
 vendingMachine.setSelectDrink()
 
 # display and give change with the minimum number of notes.
-print(vendingMachine.calculate_change( 10, 2 ))
-
 print("TOTAL MONEY")
  
  
