@@ -5,6 +5,9 @@ Author/Developer: RAZMAN RAMAN
 
 date 27/06/2024
 
+## To test, download and go to app here:
+[vending_machine.py](src/vending_machine.py)
+
 Programming Language:
 Python 
 
